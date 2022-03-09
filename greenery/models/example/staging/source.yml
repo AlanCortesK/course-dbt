@@ -20,3 +20,48 @@ sources:
         loaded_at_field: created_at
         description: >
           Contains demographic information about each superhero
+
+  - name: greenery # name of the source 
+    schema: public # this is the schema our raw data lives in
+    database: dbt # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: users 
+        loaded_at_field: created_at
+        description: >
+          Contains personal information of users
+
+      - name: addresses
+        description: >
+          Contains information on the address of the user
+
+      - name: events 
+        loaded_at_field: created_at
+        description: >
+          Contains basic information on the events
+
+      - name: orders
+        loaded_at_field: created_at
+        description: >
+          Contains information regarding the orders submitted by the user
+
+      - name: products
+        description: >
+          Contains information of our products
+
+      - name: order_items
+        description: >
+          Contains information of the products in each order
+
+      - name: promos
+        description: >
+          Contains information of the promos applied to each order

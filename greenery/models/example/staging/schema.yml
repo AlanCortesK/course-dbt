@@ -13,3 +13,36 @@ models:
       - name: weight
         tests:
           - positive_values
+
+  - name: stg_users
+    description: Contains personal information of users as name, email, phone number.
+
+  - name: stg_addresess
+    description: Contains information on the address of the user as zipcode, state and country.
+
+  - name: stg_events
+    description: Contains basic information on the events as event type and url. 
+
+  - name: stg_orders
+    description: Contains information regarding the orders submitted by the user as costs, shipping service, delivery info, etc. 
+    columns:
+      - name: order_cost
+        tests:
+          - positive_values
+      - name: order_total
+        tests:
+          - positive_values
+
+  - name: stg_products
+    description: Contains information of our products as name, price and inventory. 
+
+  - name: stg_order_items
+    description: Contains information of the products and quantity in each order. 
+    columns:
+      - name: quantity
+        tests:
+          - positive_values
+
+
+  - name: stg_promos
+    description: Contains information the discount and status of promos applied to orders.
