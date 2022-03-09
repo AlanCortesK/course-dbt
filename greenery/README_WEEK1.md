@@ -10,7 +10,7 @@ code:
     SELECT 
     COUNT(DISTINCT(user_id)) as n_users
     FROM dbt_alan_c.stg_users
-
+}
 ```
 
 **On average, how many orders do we receive per hour?**
