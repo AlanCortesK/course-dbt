@@ -1,0 +1,79 @@
+
+version: 2
+
+models:
+  - name: dim_products
+    description: "Dimension table for products"
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_users
+    description: "Personal information of users, including address"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_order_items
+    description: "Information on the products for each order"
+
+  - name: fct_orders
+    description: "Basic information for each order"
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+  
+  - name: fct_promos
+    description: "Discount and status of every promo"
+    columns:
+      - name: promo_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: int_user_orders
+    description: "Intermidiate table containing information of the products in each order for every user"
+
+  - name: fct_user_orders
+    description: "Table containing information about the number of orders and the number of products grouped by user"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+
+  - name: fct_order_product
+    description: "Grouped information of products at order id level"
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+  
+  - name: int_order_product
+    description: "Order products information"
+
+  - name: fct_product_sales_agg
+    description: "Information of how many products where sold each day, grouped by product_id and date"
+  
+  - name: fct_product_sales_inventory
+    description: "For each product, 7 day running avg of the number of products sold and the current inventory"
+    columns:
+      - name: n_products_sold_avg
+        tests:
+          - positive_values
+      - name: inventory
+        tests:
+          - positive_values
+
+  - name: int_promo_orders
+    description: "Orders corresponding to each promo_id"
+
+  - name: fct_promo_orders
+    description: "Number of orders for each promo at the promo_id/day level"
