@@ -64,3 +64,58 @@ from dbt_alan_c.int_events_orders_product
 group by product_name;
 ````
 
+## PART 2: Create a macro
+
+A macro called get_distinct_values was created.
+
+The macro was implemented in model "marts/marketing/fct_events_agg.sql"
+
+
+Macro code:
+
+```` sql
+
+{% macro get_distinct_values(model, column_name) %}
+
+{% set distinct_query %}
+select distinct
+{{column_name}}
+from {{model}}
+order by 1
+{% endset %}
+
+{% set results = run_query(distinct_query) %}
+
+{% if execute %}
+{# Return the first column #}
+{% set results_list = results.columns[0].values() %}
+{% else %}
+{% set results_list = [] %}
+{% endif %}
+
+{{ return(results_list) }}
+
+{% endmacro %}
+
+````
+
+## PART 3: Add a post hook to your project to apply grants to the role “reporting”.
+
+**Done**
+
+## PART 4: Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project
+
+star from dbt-utils was implemented in model "marts/core/dim_users.sql" to simplify the code
+
+code:
+
+```` sql
+
+SELECT 
+    {{ dbt_utils.star(from=ref('stg_users'), except=["created_at", "updated_at", "address_id"]) }},
+    created_at as registered_at,
+    {{ dbt_utils.star(from=ref('stg_addresses'), except=["address_id"]) }}
+FROM {{ref('stg_users')}}
+LEFT JOIN {{ref('stg_addresses')}} USING(address_id)
+
+````
