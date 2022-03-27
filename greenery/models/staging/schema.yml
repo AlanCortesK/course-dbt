@@ -17,7 +17,7 @@ models:
   - name: stg_users
     description: Contains personal information of users as name, email, phone number.
 
-  - name: stg_addresess
+  - name: stg_addresses
     description: Contains information on the address of the user as zipcode, state and country.
 
   - name: stg_events

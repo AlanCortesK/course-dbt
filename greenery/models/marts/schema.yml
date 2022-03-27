@@ -77,3 +77,14 @@ models:
 
   - name: fct_promo_orders
     description: "Number of orders for each promo at the promo_id/day level"
+
+  - name: fct_events_agg
+    description: "Funnel information at the session id level"
+    columns:
+      - name: n_order_ids
+        tests:
+          - no_greater_than:
+              n: 1
+  
+  - name: int_events_orders_products
+    description: "Events info adding product_information for events with order_id"
