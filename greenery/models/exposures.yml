@@ -1,0 +1,11 @@
+  - name: Product Funnel Dashboard
+    description: >
+      Models that are critical to our product funnel dashboard
+    type: dashboard
+    maturity: high
+    owner:
+      name: Alan Cortés
+      email: alan_cortes97@outlook.com
+    depends_on:
+      - ref('int_funnel')
+      - ref('fct_funnel_agg')

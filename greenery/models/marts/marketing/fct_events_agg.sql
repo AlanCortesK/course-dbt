@@ -8,6 +8,7 @@
 
 SELECT
     session_id
+    , min(created_at::date) as created_at
     , max(order_id) as order_id
     , count(distinct(order_id)) as n_order_ids
     , count(distinct(product_id)) as products_to_cart
